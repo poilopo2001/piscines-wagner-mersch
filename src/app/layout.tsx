@@ -83,7 +83,7 @@ export default function RootLayout({
 
   return (
     <html lang="fr" className={`${familjenGrotesk.variable} ${geist.variable}`}>
-      <body className="bg-neutral-50 text-neutral-900 font-body antialiased">
+      <body className="bg-neutral-50 text-neutral-900 font-body antialiased pb-[calc(60px+env(safe-area-inset-bottom))] lg:pb-0">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
