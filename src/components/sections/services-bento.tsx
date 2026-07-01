@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import {
   BrickWall,
   Container,
@@ -29,6 +30,7 @@ type Service = {
   span: string;
   featured?: boolean;
   variant?: 'chantier' | 'naturelle';
+  image?: string;
 };
 
 const SERVICES: Service[] = [
@@ -41,6 +43,7 @@ const SERVICES: Service[] = [
     span: 'md:col-span-2 md:row-span-2',
     featured: true,
     variant: 'chantier',
+    image: '/images/service-beton.jpg',
   },
   {
     num: 2,
@@ -59,6 +62,7 @@ const SERVICES: Service[] = [
     span: 'md:row-span-2',
     featured: true,
     variant: 'naturelle',
+    image: '/images/service-naturelle.jpg',
   },
   {
     num: 4,
@@ -101,6 +105,7 @@ const SERVICES: Service[] = [
     span: 'md:col-span-2 md:row-span-2',
     featured: true,
     variant: 'chantier',
+    image: '/images/service-renovation.jpg',
   },
   {
     num: 9,
@@ -175,12 +180,22 @@ export function ServicesBento() {
               {svc.featured ? (
                 <>
                   <div className="absolute inset-0 -z-10">
-                    <GraphicBlock
-                      variant={svc.variant ?? 'chantier'}
-                      className="w-full h-full"
-                      rounded={false}
-                    />
-                    <div className="absolute inset-0 bg-primary-900/70 group-hover:bg-primary-900/55 transition-colors duration-default" />
+                    {svc.image ? (
+                      <Image
+                        src={svc.image}
+                        alt={svc.title}
+                        fill
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="object-cover object-center transition-transform duration-default ease-standard group-hover:scale-105"
+                      />
+                    ) : (
+                      <GraphicBlock
+                        variant={svc.variant ?? 'chantier'}
+                        className="w-full h-full"
+                        rounded={false}
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary-900/85 via-primary-900/35 to-transparent transition-colors duration-default" />
                   </div>
                   <div className="relative z-10 flex flex-col gap-3 h-full justify-end">
                     <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-neutral-50/15 border border-neutral-50/20">
